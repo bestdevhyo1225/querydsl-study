@@ -741,5 +741,17 @@ public class QuerydslBasicTest {
         }
     }
 
+    @Test
+    void joinTest() {
+        List<Member> members = queryFactory
+                .selectFrom(member)
+                .join(member.team).fetchJoin()
+                .fetch();
+
+        for (Member member : members) {
+            System.out.println(member.getTeam().getName());
+        }
+    }
+
 }
 
